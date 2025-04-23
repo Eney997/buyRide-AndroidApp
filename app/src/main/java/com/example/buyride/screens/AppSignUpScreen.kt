@@ -240,6 +240,7 @@ fun AppSignUpScreen() {
                     val getGmail = gmail.value
                     val getLocation = selectedLocation.value
                     val getGender = selectedGender.value
+                    val myDb = DatabaseCon(context)
 
 
                     //handle all empty inputs
@@ -305,9 +306,17 @@ fun AppSignUpScreen() {
                         return@Button
                     }
 
+                    //handle username duplication
+                    if(myDb.isUserNameTaken(getUsername))
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Username already taken!")
+                        }
+                        return@Button
+                    }
+
                     //insert user information in database
                     val user = UserClass(getUsername, getPassword, getGmail, getLocation,getGender)
-                    val myDb = DatabaseCon(context)
                     myDb.insertUserInformation(user)
 
 

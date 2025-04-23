@@ -50,6 +50,29 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
     }
 
 
+    //unique username
+    fun isUserNameTaken(username: String): Boolean
+    {
+        val db = this.writableDatabase
+        val query = ("SELECT * FROM $TABLE_NAME WHERE $COL_USERNAME").toString() + " = ?"
+        val cursor = db.rawQuery(query, arrayOf(username))
+
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
+
+
+    fun logInAccountByUser(username: String,password: String): Boolean{
+        val db = this.readableDatabase
+        val query = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE username = ? AND password = ?",arrayOf(username,password))
+
+        val exists = query.count > 0
+        query.close()
+        return exists
+    }
+
+
 
 
 
