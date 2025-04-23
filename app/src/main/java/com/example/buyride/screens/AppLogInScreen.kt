@@ -104,7 +104,7 @@ fun AppLogInScreen(
                 Text(text = "LogIn", fontSize = 20.sp, color = Color.White)
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             ClickableText(
                 text = buildAnnotatedString {
@@ -120,8 +120,8 @@ fun AppLogInScreen(
                     withStyle(
                         style = androidx.compose.ui.text.SpanStyle(
                             color = Color.White,
-                            fontSize = 20.sp,
-                            textDecoration = TextDecoration.Underline
+                            fontSize = 23.sp,
+                            textDecoration = TextDecoration.LineThrough
                         )
                     ) {
                         append(" ")
