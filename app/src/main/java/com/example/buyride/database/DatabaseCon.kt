@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-
 const val DB_NAME = "bikeDb"
 const val TABLE_NAME = "Users"
 const val COL_USERNAME = "username"
@@ -14,7 +13,6 @@ const val COL_GMAIL = "gmail"
 const val COL_LOCATION = "location"
 const val COL_GENDER = "gender"
 const val COL_ID = "id"
-
 
 class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
 {

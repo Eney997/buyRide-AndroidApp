@@ -117,7 +117,6 @@ fun AppSignUpScreen() {
 
             Spacer(modifier = Modifier.height(10.dp))
 
-
             TextField(
                 value = gmail.value,
                 onValueChange = { gmail.value = it },
@@ -243,7 +242,7 @@ fun AppSignUpScreen() {
                     val getGender = selectedGender.value
 
 
-
+                    //handle all empty inputs
                     if(getUsername.isEmpty() || getPassword.isEmpty() || getGmail.isEmpty() || getLocation.isEmpty() || getGender.isEmpty()) {
                         scope.launch {
                             mySnackBarHostState.showSnackbar("Empty input detected!")
@@ -251,7 +250,62 @@ fun AppSignUpScreen() {
                         return@Button
                     }
 
+                    //handle username length
+                    if(getUsername.length > 20)
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Username too long!")
+                        }
+                        return@Button
+                    }
 
+                    //handle username containing letters only
+                    if (!getUsername.all { it.isLetter() }) {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Username must contain letters only!")
+                        }
+                        return@Button
+                    }
+
+                    //handle password length
+                    if(getPassword.length > 20)
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Password too long!")
+                        }
+                        return@Button
+                    }
+
+                    //handle password minimum length
+                    if(getPassword.length < 6 )
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Password too short!")
+                        }
+                        return@Button
+                    }
+
+//                    if (!getGmail.endsWith("@gmail.com")) also if not ends with @gmail.com
+                    //handle gmail
+                    val gmailRegex = Regex("^[a-zA-Z0-9._%+-]+@gmail\\.com$")
+
+                    if (!gmailRegex.matches(getGmail)) {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Invalid Gmail address!")
+                        }
+                        return@Button
+                    }
+
+                    //handle gmail length
+                    if(getGmail.length > 35)
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Gmail too long!")
+                        }
+                        return@Button
+                    }
+
+                    //insert user information in database
                     val user = UserClass(getUsername, getPassword, getGmail, getLocation,getGender)
                     val myDb = DatabaseCon(context)
                     myDb.insertUserInformation(user)
@@ -261,7 +315,7 @@ fun AppSignUpScreen() {
                         mySnackBarHostState.showSnackbar("Sign Up Successful!")
                     }
 
-
+                    //clear inputs
                     userName.value = ""
                     password.value = ""
                     gmail.value = ""
