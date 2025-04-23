@@ -138,7 +138,10 @@ fun AppLogInScreen(
                         sharedPref.edit { putBoolean("is_logged_in", true) }
                         sharedPref.edit { putString("username", getUserName) }
 
-                        myNavController.navigate("AppUserScreen")
+                        myNavController.navigate("AppUserScreen"){
+                            popUpTo("AppLogInScreen"){inclusive = true}
+                            launchSingleTop = true
+                        }
                     }
                     else
                     {

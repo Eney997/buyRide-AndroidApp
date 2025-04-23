@@ -62,7 +62,7 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         return exists
     }
 
-
+    //search username if exists pass and user login else fuck off
     fun logInAccountByUser(username: String,password: String): Boolean{
         val db = this.readableDatabase
         val query = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE username = ? AND password = ?",arrayOf(username,password))
