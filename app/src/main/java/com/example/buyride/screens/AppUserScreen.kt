@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +20,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -160,10 +166,126 @@ fun BottomNavigationBar
 
 @Composable
 fun HomeScreen() {
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.Center){
-        Text(text= "Im in home screen",color = Color.White)
+    val context = LocalContext.current
+    val boxCol = Color(ContextCompat.getColor(context, R.color.snackBarColor))
+
+
+    val motoObligationTitle = listOf(
+        "Verify the Bike's Documents",
+        "Inspect the Bike Physically",
+        "Request a Test Ride",
+        "Ask for Service History",
+        "Check for Outstanding Loans",
+    )
+
+    val motoObligationDesc = listOf(
+        "Always check the RC (Registration Certificate), insurance papers, and pollution certificate before purchasing.",
+        "Ensure you check the bike’s condition, engine sound, tire wear, and brakes for any issues.",
+        "Never buy without a test ride. Feel the handling, brakes, gear shift, and comfort.",
+        "A well-maintained bike comes with service records. It helps you judge how well it’s been taken care of.",
+        "Make sure the bike is not under any active loan or has pending traffic fines.",
+    )
+
+
+    val motoObligationIcons = listOf(
+        R.drawable.moto_o,
+        R.drawable.moto_t,
+        R.drawable.moto_th,
+        R.drawable.moto_f,
+        R.drawable.moto_fv,
+    )
+
+    val obligationItems = motoObligationTitle.zip(motoObligationIcons)
+
+    Box(modifier = Modifier.fillMaxSize()
+        .background(Color.Black)
+        .padding(bottom = 100.dp, top = 50.dp)
+    )
+    {
+        Column(modifier = Modifier.fillMaxSize())
+        {
+
+
+            Box(
+                modifier = Modifier
+                    .padding(start = 10.dp, end = 10.dp)
+                    .fillMaxWidth()
+                    .height(220.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(color = boxCol),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.rider),
+                        contentDescription = "rider",
+                        modifier = Modifier.size(170.dp)
+                    )
+
+                    Spacer(modifier = Modifier.width(30.dp))
+
+                    Text(
+                        text = "Your journey starts here!",
+                        color = Color.White,
+                        fontSize = 30.sp
+                    )
+                }
+            }
+
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            LazyRow(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(obligationItems) { (obligation, iconResId) ->
+                    Box(
+                        modifier = Modifier
+                            .width(300.dp)
+                            .height(230.dp)
+                            .background(color = boxCol, shape = RoundedCornerShape(10.dp))
+                            .border(1.dp, Color.DarkGray, shape = RoundedCornerShape(10.dp)),
+                        contentAlignment = Alignment.TopStart
+                    ) {
+                        Column(modifier = Modifier.padding(10.dp)) {
+                            Image(
+                                painter = painterResource(id = iconResId),
+                                contentDescription = obligation,
+                                modifier = Modifier.size(50.dp)
+                            )
+                            Spacer(modifier = Modifier.height(5.dp))
+
+
+                            Text(
+                                text = obligation,
+                                fontSize = 23.sp,
+                                color = Color.White
+                            )
+
+                            Spacer(modifier = Modifier.height(5.dp))
+
+                            Text(
+                                text = motoObligationDesc[motoObligationTitle.indexOf(obligation)],
+                                fontSize = 19.sp,
+                                color = Color.White
+                            )
+
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
+
 
 @Composable
 fun FavouritesScreen() {
@@ -191,6 +313,7 @@ fun SettingsScreen()
     val counterBoxColors = Color(ContextCompat.getColor(context, R.color.snackBarColor))
     val scrollIfNeeded = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
+
 
     //show dialog box
     if (showDialog && username != null)
