@@ -1,5 +1,6 @@
 package com.example.buyride.database
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -70,6 +71,33 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         val exists = query.count > 0
         query.close()
         return exists
+    }
+
+
+
+    //get user info to store in app
+    @SuppressLint("Range")
+    fun getUserInfoToStoreInApp(username:String):UserClass?
+    {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE username = ?", arrayOf(username))
+
+        var user:UserClass? = null
+
+        if(cursor.moveToFirst())
+        {
+            val uname = cursor.getString(cursor.getColumnIndex(COL_USERNAME))
+            val uPass = cursor.getString(cursor.getColumnIndex(COL_PASSWORD))
+            val uGmail = cursor.getString(cursor.getColumnIndex(COL_GMAIL))
+            val uLocation = cursor.getString(cursor.getColumnIndex(COL_LOCATION))
+            val uGender = cursor.getString(cursor.getColumnIndex(COL_GENDER))
+
+            user = UserClass(uname,uPass,uGmail,uLocation,uGender)
+        }
+
+        cursor.close()
+        return user
+
     }
 
 
