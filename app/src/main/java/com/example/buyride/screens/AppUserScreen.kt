@@ -3,6 +3,7 @@ package com.example.buyride.screens
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -184,6 +187,16 @@ fun SettingsScreen()
     val username = sharedPref.getString("username",null)
     var user by remember {mutableStateOf<UserClass?>(null)}
     val db = remember {DatabaseCon(context)}
+    var isTextVisible by remember { mutableStateOf(false) }
+    val counterBoxColors = Color(ContextCompat.getColor(context, R.color.snackBarColor))
+    val scrollIfNeeded = rememberScrollState()
+    var showDialog by remember { mutableStateOf(false) }
+
+    //show dialog box
+    if (showDialog && username != null)
+    {
+        PasswordAlertDialog (username = username,db=db,onDismiss = {showDialog = false})
+    }
 
     LaunchedEffect(Unit)
     {
@@ -194,7 +207,7 @@ fun SettingsScreen()
 
     Box(modifier = Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.TopStart)
     {
-        Column(modifier = Modifier.fillMaxSize())
+        Column(modifier = Modifier.fillMaxSize().verticalScroll(scrollIfNeeded).padding(bottom = 100.dp))
         {
             Row(
                 modifier = Modifier
@@ -224,14 +237,13 @@ fun SettingsScreen()
                 color = Color.DarkGray
             )
 
-
                 Row(modifier = Modifier.fillMaxWidth().padding(top = 20.dp, start = 20.dp, end = 20.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Absolute.SpaceBetween)
                 {
                     Box(
                         modifier = Modifier
-                            .background(Color.DarkGray, shape = RoundedCornerShape(12.dp))
+                            .background(color = counterBoxColors, shape = RoundedCornerShape(12.dp))
                             .padding(10.dp) // Padding inside the box
                     ) {
                         Column(
@@ -242,10 +254,9 @@ fun SettingsScreen()
                         }
                     }
 
-
                     Box(
                         modifier = Modifier
-                            .background(Color.DarkGray, shape = RoundedCornerShape(12.dp))
+                            .background(color = counterBoxColors, shape = RoundedCornerShape(12.dp))
                             .padding(10.dp) // Padding inside the box
                     ) {
                         Column(
@@ -256,10 +267,9 @@ fun SettingsScreen()
                         }
                     }
 
-
                     Box(
                         modifier = Modifier
-                            .background(Color.DarkGray, shape = RoundedCornerShape(12.dp))
+                            .background(color = counterBoxColors, shape = RoundedCornerShape(12.dp))
                             .padding(10.dp) // Padding inside the box
                     ) {
                         Column(
@@ -288,7 +298,7 @@ fun SettingsScreen()
                     Icon(painter = painterResource(id = R.drawable.ic_arrow_right), contentDescription = "Change password", tint = Color.White, modifier = Modifier
                         .padding(end = 20.dp)
                         .clickable {
-                            run {  }
+                            showDialog = true
                         })
                 }
 
@@ -306,8 +316,27 @@ fun SettingsScreen()
                     Icon(painter = painterResource(id = R.drawable.ic_arrow_right), contentDescription = "About App", tint = Color.White, modifier = Modifier
                         .padding(end = 20.dp)
                         .clickable {
-                            run {  }
+                             isTextVisible = !isTextVisible
                         })
+                }
+
+                AnimatedVisibility(visible = isTextVisible)
+                {
+                    Text(
+                        text = "Welcome to BuyRide — your trusted destination for two-wheeled adventures.\n" +
+                                "\n" +
+                                "This app was crafted with a passion for motorcycles and a love for smooth, hassle-free shopping. Whether you're a seasoned rider or just getting started, BuyRide is here to help you find the perfect ride with ease.\n" +
+                                "\n" +
+                                "Every feature, every detail, and every interaction was thoughtfully designed by an independent developer with the goal of making your bike buying experience enjoyable and exciting.\n" +
+                                "\n" +
+                                "Browse, discover, and purchase your dream motorbike — all in one place.\n" +
+                                "\n" +
+                                "Thank you for choosing BuyRide.\n" +
+                                "Your journey begins here.",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
+                    )
                 }
 
                HorizontalDivider(modifier = Modifier,thickness = 1.dp, color = Color.DarkGray)

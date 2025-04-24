@@ -101,6 +101,19 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
     }
 
 
+    //change password
+    fun changePassword(username: String, newPassword: String):Boolean
+    {
+        val db = this.writableDatabase
+        val cv = ContentValues().apply {
+            put("password", newPassword)
+        }
+
+        val res = db.update(TABLE_NAME,cv,"username=?", arrayOf(username))
+        return res > 0
+    }
+
+
 
 
 

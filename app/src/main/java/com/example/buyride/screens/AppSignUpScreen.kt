@@ -260,6 +260,15 @@ fun AppSignUpScreen() {
                         return@Button
                     }
 
+                    //handle username minimum length
+                    if(getUsername.length <= 6 )
+                    {
+                        scope.launch {
+                            mySnackBarHostState.showSnackbar("Username too short!")
+                            }
+                        return@Button
+                    }
+
                     //handle username containing letters only
                     if (!getUsername.all { it.isLetter() }) {
                         scope.launch {
@@ -278,7 +287,7 @@ fun AppSignUpScreen() {
                     }
 
                     //handle password minimum length
-                    if(getPassword.length < 6 )
+                    if(getPassword.length <= 6 )
                     {
                         scope.launch {
                             mySnackBarHostState.showSnackbar("Password too short!")
