@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -45,7 +44,6 @@ import com.example.buyride.database.DatabaseCon
 import kotlinx.coroutines.launch
 import androidx.core.content.edit
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppLogInScreen(
     myNavController: NavController
@@ -73,10 +71,11 @@ fun AppLogInScreen(
                 modifier = Modifier
                     .width(350.dp)
                     .height(65.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
                 ),
                 placeholder = { Text("Enter Username", color = Color.Gray, fontSize = 20.sp) },
                 maxLines = 1,
@@ -94,10 +93,11 @@ fun AppLogInScreen(
                 modifier = Modifier
                     .width(350.dp)
                     .height(65.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
                 ),
                 placeholder = { Text("Enter Password", color = Color.Gray, fontSize = 20.sp) },
                 maxLines = 1,

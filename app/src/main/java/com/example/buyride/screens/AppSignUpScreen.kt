@@ -85,10 +85,11 @@ fun AppSignUpScreen() {
                 modifier = Modifier
                     .width(350.dp)
                     .height(65.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
                 ),
                 placeholder = { Text("Enter UserName", color = Color.Gray, fontSize = 20.sp) },
                 maxLines = 1,
@@ -106,10 +107,11 @@ fun AppSignUpScreen() {
                 modifier = Modifier
                     .width(350.dp)
                     .height(65.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
                 ),
                 placeholder = { Text("Enter Password", color = Color.Gray, fontSize = 20.sp) },
                 maxLines = 1,
@@ -127,10 +129,11 @@ fun AppSignUpScreen() {
                 modifier = Modifier
                     .width(350.dp)
                     .height(65.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.Gray,
                 ),
                 placeholder = { Text("Enter Gmail", color = Color.Gray, fontSize = 20.sp) },
                 maxLines = 1,
@@ -157,10 +160,11 @@ fun AppSignUpScreen() {
                         Text("Select Location", color = Color.Gray, fontSize = 20.sp)
                     },
                     textStyle = TextStyle(color = Color.White, fontSize = 20.sp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
                         focusedIndicatorColor = Color.White,
-                        unfocusedIndicatorColor = Color.Gray
                     ),
                     trailingIcon = {
                         Icon(
@@ -204,10 +208,11 @@ fun AppSignUpScreen() {
                         Text("Select Gender", color = Color.Gray, fontSize = 20.sp)
                     },
                     textStyle = TextStyle(color = Color.White, fontSize = 20.sp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.Transparent,
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
                         focusedIndicatorColor = Color.White,
-                        unfocusedIndicatorColor = Color.Gray
                     ),
                     trailingIcon = {
                         Icon(
