@@ -8,10 +8,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,13 +20,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -44,6 +43,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -168,7 +168,7 @@ fun BottomNavigationBar
 fun HomeScreen() {
     val context = LocalContext.current
     val boxCol = Color(ContextCompat.getColor(context, R.color.snackBarColor))
-
+    val scroll = rememberScrollState()
 
     val motoObligationTitle = listOf(
         "Verify the Bike's Documents",
@@ -186,7 +186,6 @@ fun HomeScreen() {
         "Make sure the bike is not under any active loan or has pending traffic fines.",
     )
 
-
     val motoObligationIcons = listOf(
         R.drawable.moto_o,
         R.drawable.moto_t,
@@ -199,13 +198,11 @@ fun HomeScreen() {
 
     Box(modifier = Modifier.fillMaxSize()
         .background(Color.Black)
-        .padding(bottom = 100.dp, top = 50.dp)
+        .padding(bottom = 110.dp, top = 50.dp)
     )
     {
-        Column(modifier = Modifier.fillMaxSize())
+        Column(modifier = Modifier.fillMaxSize().verticalScroll(scroll))
         {
-
-
             Box(
                 modifier = Modifier
                     .padding(start = 10.dp, end = 10.dp)
@@ -226,25 +223,27 @@ fun HomeScreen() {
                         modifier = Modifier.size(170.dp)
                     )
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(20.dp))
 
                     Text(
-                        text = "Your journey starts here!",
+                        text = "YOUR JOURNEY STARTS HERE!",
                         color = Color.White,
-                        fontSize = 30.sp
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 27.sp
                     )
                 }
             }
 
-
             Spacer(modifier = Modifier.height(20.dp))
 
-            LazyRow(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState())
+                    .padding(horizontal = 20.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(obligationItems) { (obligation, iconResId) ->
+                obligationItems.forEach { (obligation, iconResId) ->
                     Box(
                         modifier = Modifier
                             .width(300.dp)
@@ -260,29 +259,63 @@ fun HomeScreen() {
                                 modifier = Modifier.size(50.dp)
                             )
                             Spacer(modifier = Modifier.height(5.dp))
-
-
                             Text(
                                 text = obligation,
                                 fontSize = 23.sp,
+                                fontWeight = FontWeight.Medium,
                                 color = Color.White
                             )
-
                             Spacer(modifier = Modifier.height(5.dp))
-
                             Text(
                                 text = motoObligationDesc[motoObligationTitle.indexOf(obligation)],
                                 fontSize = 19.sp,
+                                fontWeight = FontWeight.Normal,
                                 color = Color.White
                             )
+                        }
+                    }
+                }
+            }
 
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Box(modifier = Modifier.padding(start = 10.dp,end = 10.dp)) {
+                Text(
+                    "TOP SELLING BIKES",
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Column {
+                Motorcycle.topSellingBikes.take(4).forEach { bike ->
+                    Box(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(color = boxCol)
+                            .fillMaxWidth()
+                    ) {
+                        Row(modifier = Modifier.padding(16.dp)) {
+                            Image(
+                                painter = painterResource(id = bike.imageRes),
+                                contentDescription = bike.name,
+                                modifier = Modifier.size(80.dp)
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Column {
+                                Text(text = bike.name, color = Color.White, fontSize = 23.sp)
+                                Text(text = bike.type, color = Color.White, style = MaterialTheme.typography.bodyLarge)
+                                Text(text = bike.description, color = Color.White,style = MaterialTheme.typography.bodyLarge)
+                            }
                         }
                     }
                 }
             }
         }
-
-
     }
 }
 
@@ -349,8 +382,8 @@ fun SettingsScreen()
 
                 Column(modifier = Modifier.fillMaxWidth())
                 {
-                    Text(text = "UserName: ${user?.username}", color = Color.White, fontSize = 17.sp)
-                    Text(text = "Gmail: ${user?.gmail}", color = Color.White, fontSize = 17.sp)
+                    Text(text = "UserName: ${user?.username}", color = Color.White, fontSize = 17.sp, fontWeight = FontWeight.Medium)
+                    Text(text = "Gmail: ${user?.gmail}", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                 }
             }
 
@@ -372,8 +405,8 @@ fun SettingsScreen()
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Text("0", color = Color.White, fontSize = 17.sp)
-                            Text("Total Orders", color = Color.White, fontSize = 17.sp)
+                            Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                            Text("Total Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                         }
                     }
 
@@ -385,8 +418,8 @@ fun SettingsScreen()
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Text("0", color = Color.White, fontSize = 17.sp)
-                            Text("Active Orders", color = Color.White, fontSize = 17.sp)
+                            Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                            Text("Active Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                         }
                     }
 
@@ -398,8 +431,8 @@ fun SettingsScreen()
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Text("0", color = Color.White, fontSize = 17.sp)
-                            Text("Cancel Orders", color = Color.White, fontSize = 17.sp)
+                            Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                            Text("Cancel Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                         }
                     }
 
@@ -416,7 +449,7 @@ fun SettingsScreen()
                 {
                     Icon(painter = painterResource(id = R.drawable.ic_password), contentDescription = "Change password", tint = Color.White)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Change Password", color = Color.White, fontSize = 20.sp)
+                    Text(text = "Change Password", color = Color.White, fontSize = 20.sp,fontWeight = FontWeight.Medium)
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(painter = painterResource(id = R.drawable.ic_arrow_right), contentDescription = "Change password", tint = Color.White, modifier = Modifier
                         .padding(end = 20.dp)
@@ -434,7 +467,7 @@ fun SettingsScreen()
                 {
                     Icon(painter = painterResource(id = R.drawable.ic_app_shortcut), contentDescription = "App Story", tint = Color.White)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "About App", color = Color.White, fontSize = 20.sp)
+                    Text(text = "About App", color = Color.White, fontSize = 20.sp,fontWeight = FontWeight.Medium)
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(painter = painterResource(id = R.drawable.ic_arrow_right), contentDescription = "About App", tint = Color.White, modifier = Modifier
                         .padding(end = 20.dp)
@@ -457,6 +490,7 @@ fun SettingsScreen()
                                 "Thank you for choosing BuyRide.\n" +
                                 "Your journey begins here.",
                     color = Color.White,
+                    fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
                     modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
                     )
@@ -471,7 +505,7 @@ fun SettingsScreen()
                 {
                     Icon(painter = painterResource(id = R.drawable.ic_exit), contentDescription = "Log out", tint = Color.White)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Log out", color = Color.White, fontSize = 20.sp)
+                    Text(text = "Log out", color = Color.White, fontSize = 20.sp,fontWeight = FontWeight.Medium)
                     Spacer(modifier = Modifier.weight(1f))
                     Icon(painter = painterResource(id = R.drawable.ic_arrow_right), contentDescription = "Log out", tint = Color.White, modifier = Modifier
                         .padding(end = 20.dp)
