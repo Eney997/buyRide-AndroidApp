@@ -329,7 +329,7 @@ fun ProductScreen() {
             .background(Color.Black),
         contentAlignment = Alignment.Center
     ) {
-        BikeScreen(paddingValues = PaddingValues(16.dp))
+        BikeScreen(paddingValues = PaddingValues(top = 35.dp, bottom = 100.dp))
     }
 }
 

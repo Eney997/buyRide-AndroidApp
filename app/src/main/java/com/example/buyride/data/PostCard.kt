@@ -65,6 +65,7 @@ fun PostCard(bike: Bike) {
                 color = Color.White,
                 style = MaterialTheme.typography.bodySmall
             )
+
         }
     }
 }

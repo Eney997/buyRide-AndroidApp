@@ -39,8 +39,7 @@ fun BikeScreen(paddingValues: PaddingValues) {
     if (showLoading) {
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
+                .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Text("Loading...", color = Color.White, style = MaterialTheme.typography.titleMedium)
