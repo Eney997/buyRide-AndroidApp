@@ -21,10 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
 @Composable
-fun BikeScreen(paddingValues: PaddingValues) {
+fun BikeScreen(paddingValues: PaddingValues, myNavController: NavController) {
     val viewModel: BikeViewModel = viewModel()
     val bikes by viewModel.bikes.collectAsState()
     var showLoading by remember { mutableStateOf(true) }
@@ -51,7 +52,7 @@ fun BikeScreen(paddingValues: PaddingValues) {
             modifier = Modifier.padding(paddingValues)
         ) {
             items(bikes) { bike ->
-                PostCard(bike)
+                PostCard(bike,myNavController)
             }
         }
     }

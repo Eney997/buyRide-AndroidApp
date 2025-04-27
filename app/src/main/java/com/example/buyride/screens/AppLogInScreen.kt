@@ -50,6 +50,7 @@ fun AppLogInScreen(
 ) {
     Box(modifier = Modifier.fillMaxSize().background(Color.Black))
     {
+        //todo internet checker need to add
 
         val mySnackBarHostState = remember { SnackbarHostState() }
         val context = LocalContext.current

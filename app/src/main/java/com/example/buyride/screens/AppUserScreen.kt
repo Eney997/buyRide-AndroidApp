@@ -59,6 +59,7 @@ import com.example.buyride.R
 import com.example.buyride.database.DatabaseCon
 import com.example.buyride.database.UserClass
 import androidx.core.content.edit
+import coil.compose.rememberAsyncImagePainter
 import com.example.buyride.MainActivity
 import com.example.buyride.data.BikeScreen
 
@@ -108,9 +109,20 @@ fun Navigation(navHostController: NavHostController)
     NavHost(startDestination = "HomeScreen", navController = navHostController)
     {
         composable("HomeScreen"){HomeScreen()}
-        composable("ProductScreen"){ ProductScreen() }
+        composable("ProductScreen"){ ProductScreen(navHostController) }
         composable("FavouritesScreen"){ FavouritesScreen() }
         composable("SettingsScreen"){ SettingsScreen() }
+        composable(
+            route = "BuyMotoScreen/{bikeName}/{bikePrice}/{bikeType}/{bikeImage}"
+        ) { backStackEntry ->
+
+            val bikeName = backStackEntry.arguments?.getString("bikeName") ?: ""
+            val bikePrice = backStackEntry.arguments?.getString("bikePrice") ?: ""
+            val bikeType = backStackEntry.arguments?.getString("bikeType") ?: ""
+            val bikeImage = backStackEntry.arguments?.getString("bikeImage") ?: ""
+
+            BuyMotoScreen(bikeName, bikePrice, bikeType, bikeImage)
+        }
     }
 
 }
@@ -322,23 +334,60 @@ fun HomeScreen() {
 }
 
 @Composable
-fun ProductScreen() {
+fun ProductScreen(myNavController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black),
         contentAlignment = Alignment.Center
     ) {
-        BikeScreen(paddingValues = PaddingValues(top = 35.dp, bottom = 100.dp))
+        BikeScreen(paddingValues = PaddingValues(top = 35.dp, bottom = 100.dp),myNavController)
+    }
+}
+
+@Composable
+fun BuyMotoScreen(bikeName: String, bikePrice: String, bikeType: String, bikeImage: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+            Image(
+                painter = rememberAsyncImagePainter(bikeImage),
+                contentDescription = bikeName,
+                modifier = Modifier.size(200.dp)
+            )
+
+
+            Text("Bike Name: $bikeName", fontSize = 24.sp, color = Color.White)
+            Text("Price: $bikePrice", fontSize = 20.sp, color = Color.White)
+            Text("Type: $bikeType", fontSize = 20.sp, color = Color.White)
+        }
     }
 }
 
 
+
 @Composable
 fun FavouritesScreen() {
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.Center){
-        Text(text= "Im in FavouritesScreen screen",color = Color.White)
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black),
+        contentAlignment = Alignment.Center
+    )
+    {
+
+        Text(text = "Not Favourites Yet", color = Color.White, fontSize = 25.sp)
+
     }
+
+
+
 }
 
 @Composable
