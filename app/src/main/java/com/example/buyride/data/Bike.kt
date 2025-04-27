@@ -6,5 +6,5 @@ data class Bike(
     val type: String,
     val price: Int,
     val imageUrl: String,
-    val topSeller: Boolean
+    val info: String
 )

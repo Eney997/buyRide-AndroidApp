@@ -106,7 +106,7 @@ fun PostCard(bike: Bike,myNavController: NavController) {
                     .clickable {
                         val encodedImage = Uri.encode(bike.imageUrl)
                         myNavController.navigate(
-                            "BuyMotoScreen/${bike.name}/${bike.price}/${bike.type}/$encodedImage"
+                            "BuyMotoScreen/${bike.name}/${bike.price}/${bike.type}/$encodedImage/${bike.info}"
                         )
                     }
                 )

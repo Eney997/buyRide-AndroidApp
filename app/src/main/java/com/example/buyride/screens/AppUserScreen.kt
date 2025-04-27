@@ -24,6 +24,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -41,7 +43,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -113,15 +117,16 @@ fun Navigation(navHostController: NavHostController)
         composable("FavouritesScreen"){ FavouritesScreen() }
         composable("SettingsScreen"){ SettingsScreen() }
         composable(
-            route = "BuyMotoScreen/{bikeName}/{bikePrice}/{bikeType}/{bikeImage}"
+            route = "BuyMotoScreen/{bikeName}/{bikePrice}/{bikeType}/{bikeImage}/{bikeInfo}"
         ) { backStackEntry ->
 
             val bikeName = backStackEntry.arguments?.getString("bikeName") ?: ""
             val bikePrice = backStackEntry.arguments?.getString("bikePrice") ?: ""
             val bikeType = backStackEntry.arguments?.getString("bikeType") ?: ""
+            val bikeInfo = backStackEntry.arguments?.getString("bikeInfo") ?: ""
             val bikeImage = backStackEntry.arguments?.getString("bikeImage") ?: ""
 
-            BuyMotoScreen(bikeName, bikePrice, bikeType, bikeImage)
+            BuyMotoScreen(bikeName, bikePrice, bikeType, bikeImage,bikeInfo)
         }
     }
 
@@ -346,28 +351,71 @@ fun ProductScreen(myNavController: NavController) {
 }
 
 @Composable
-fun BuyMotoScreen(bikeName: String, bikePrice: String, bikeType: String, bikeImage: String) {
+fun BuyMotoScreen(bikeName: String, bikePrice: String, bikeType: String, bikeImage: String, bikeInfo: String) {
+
+    val scroll = rememberScrollState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.TopStart
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-            Image(
-                painter = rememberAsyncImagePainter(bikeImage),
-                contentDescription = bikeName,
-                modifier = Modifier.size(200.dp)
-            )
+            Column(modifier = Modifier.padding(top = 50.dp , start = 20.dp, end = 20.dp, bottom = 120.dp).verticalScroll(scroll)) {
 
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(Color.Black)
+                        .shadow(0.dp, RoundedCornerShape(10.dp))
+                ) {
+                    Image(
+                        painter = rememberAsyncImagePainter(bikeImage),
+                        contentDescription = bikeName,
+                        contentScale = ContentScale.Crop, // Use Crop for better fit
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(300.dp) // fixed height
+                            .clip(RoundedCornerShape(10.dp)) // clip again for Image
+                    )
 
-            Text("Bike Name: $bikeName", fontSize = 24.sp, color = Color.White)
-            Text("Price: $bikePrice", fontSize = 20.sp, color = Color.White)
-            Text("Type: $bikeType", fontSize = 20.sp, color = Color.White)
-        }
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text("Bike Name: $bikeName",style = MaterialTheme.typography.titleMedium, color = Color.Gray)
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Text("Price: $$bikePrice",style = MaterialTheme.typography.titleMedium, color = Color.Gray)
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Text("Type: $bikeType",style = MaterialTheme.typography.titleMedium, color = Color.Gray)
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Text("Description: $bikeInfo",style = MaterialTheme.typography.titleMedium, color = Color.Gray)
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Button(
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .height(50.dp).width(120.dp)
+                        .border(1.dp, Color.LightGray, shape = RoundedCornerShape(10.dp)),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
+                    onClick = {/*move charge screen*/}
+                )
+                {
+                    Text("BUY", fontSize = 20.sp, color = Color.Gray)
+                }
+
+            }
+
     }
+
 }
+
+
 
 
 
