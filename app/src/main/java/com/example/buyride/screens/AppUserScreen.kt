@@ -12,6 +12,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -59,6 +60,7 @@ import com.example.buyride.database.DatabaseCon
 import com.example.buyride.database.UserClass
 import androidx.core.content.edit
 import com.example.buyride.MainActivity
+import com.example.buyride.data.BikeScreen
 
 //data class for bottom nav item
 data class BottomNavItem(val name:String,val route:String,val icon:Int)
@@ -319,18 +321,23 @@ fun HomeScreen() {
     }
 }
 
+@Composable
+fun ProductScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black),
+        contentAlignment = Alignment.Center
+    ) {
+        BikeScreen(paddingValues = PaddingValues(16.dp))
+    }
+}
+
 
 @Composable
 fun FavouritesScreen() {
     Box(modifier = Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.Center){
         Text(text= "Im in FavouritesScreen screen",color = Color.White)
-    }
-}
-
-@Composable
-fun ProductScreen() {
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black), contentAlignment = Alignment.Center){
-        Text(text= "Im in ProductScreen screen", color = Color.White)
     }
 }
 
