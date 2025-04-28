@@ -28,7 +28,21 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
                 COL_LOCATION + " VARCHAR(256)," +
                 COL_GENDER + " VARCHAR(256)" + ")"
 
+        val createTransactionsTable = """
+        CREATE TABLE Charge (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            cardHolderName TEXT,
+            cardHolderLastName TEXT,
+            cardDigits TEXT,
+            cvvCvc TEXT,
+            expDate TEXT,
+            deliveryLocation TEXT
+        )
+    """.trimIndent()
+
         db?.execSQL(createTable)
+        db?.execSQL(createTransactionsTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -36,8 +50,26 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         onCreate(db)
     }
 
+    //insert card details into db
+    fun insertTransaction(chargeClient: ChargeTransaction)
+    {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("username", chargeClient.username)
+            put("cardHolderName", chargeClient.holderName)
+            put("cardHolderLastName", chargeClient.holderLastName)
+            put("cardDigits", chargeClient.cardDigits)
+            put("cvvCvc", chargeClient.cvvCvc)
+            put("expDate", chargeClient.expDate)
+            put("deliveryLocation", chargeClient.deliveryLocation)
+        }
+        db.insert("Charge", null, values)
+        db.close()
+    }
+
     //signup screen insert
-    fun insertUserInformation(user : UserClass){
+    fun insertUserInformation(user : UserClass)
+    {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(COL_USERNAME, user.username)
@@ -49,7 +81,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
-
 
     //unique username
     fun isUserNameTaken(username: String): Boolean
@@ -72,8 +103,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         query.close()
         return exists
     }
-
-
 
     //get user info to store in app
     @SuppressLint("Range")
@@ -100,7 +129,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
 
     }
 
-
     //change password
     fun changePassword(username: String, newPassword: String):Boolean
     {
@@ -112,13 +140,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         val res = db.update(TABLE_NAME,cv,"username=?", arrayOf(username))
         return res > 0
     }
-
-
-
-
-
-
-
 }
 
 data class UserClass(
@@ -127,4 +148,14 @@ data class UserClass(
     val gmail: String,
     val location: String,
     val gender: String
+)
+
+data class ChargeTransaction(
+    val username: String,
+    val holderName: String,
+    val holderLastName: String,
+    val cardDigits: String,
+    val expDate: String,
+    val cvvCvc: String,
+    val deliveryLocation: String
 )
