@@ -78,12 +78,12 @@ fun AppLogInScreen(
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Username", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Enter Username", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
-                )
+                    fontSize = 19.sp
+                ),
 
             )
 
@@ -101,11 +101,11 @@ fun AppLogInScreen(
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 ),
 
                 trailingIcon = {
@@ -164,7 +164,7 @@ fun AppLogInScreen(
                     ),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             ) {
-                Text(text = "Log In", style = MaterialTheme.typography.titleLarge, color = Color.Gray)
+                Text(text = "Log In",style = MaterialTheme.typography.titleLarge , color = Color.Gray)
             }
 
             Spacer(modifier = Modifier.height(40.dp))

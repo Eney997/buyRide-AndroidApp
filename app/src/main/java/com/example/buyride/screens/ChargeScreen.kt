@@ -95,11 +95,11 @@ fun ChargeScreen(){
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Card Holder Name", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Card Holder Name", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 )
             )
 
@@ -120,11 +120,11 @@ fun ChargeScreen(){
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Card Holder Last Name", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Card Holder Last Name", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 )
             )
 
@@ -145,11 +145,11 @@ fun ChargeScreen(){
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Card 16 digit number",color = Color.Gray,style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Card 16 digit number",color = Color.Gray,style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 )
             )
 
@@ -172,11 +172,11 @@ fun ChargeScreen(){
                         disabledContainerColor = Color.Transparent,
                         focusedIndicatorColor = Color.White,
                     ),
-                    placeholder = { Text("CVV/CVC", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                    placeholder = { Text("CVV/CVC", color = Color.Gray,style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                     maxLines = 1,
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                    textStyle = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 19.sp
                     )
                 )
 
@@ -197,11 +197,11 @@ fun ChargeScreen(){
                         disabledContainerColor = Color.Transparent,
                         focusedIndicatorColor = Color.White,
                     ),
-                    placeholder = { Text("Exp.Year", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                    placeholder = { Text("Exp.Year", color = Color.Gray,style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                     maxLines = 1,
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                    textStyle = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 19.sp
                     )
                 )
             }
@@ -220,11 +220,11 @@ fun ChargeScreen(){
                     onValueChange = {},
                     readOnly = true,
                     placeholder = {
-                        Text("Select delivery location", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
+                        Text("Select delivery location", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp)
                     },
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                    textStyle = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 19.sp
                     ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
@@ -363,7 +363,7 @@ fun ChargeScreen(){
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             )
             {
-                Text(text = "Purchase", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
+                Text(text = "Purchase", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp)
             }
         }
 

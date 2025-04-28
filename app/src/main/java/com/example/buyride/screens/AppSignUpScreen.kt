@@ -91,11 +91,11 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter UserName", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Enter UserName", color = Color.Gray,style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 )
             )
 
@@ -113,11 +113,11 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 ),
             )
 
@@ -135,11 +135,11 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Gmail", color = Color.Gray,  style = MaterialTheme.typography.titleLarge) },
+                placeholder = { Text("Enter Gmail", color = Color.Gray,  style = MaterialTheme.typography.titleMedium,fontSize = 19.sp) },
                 maxLines = 1,
-                textStyle = MaterialTheme.typography.titleLarge.copy(
+                textStyle = MaterialTheme.typography.titleMedium.copy(
                     color = Color.White,
-                    fontSize = 20.sp
+                    fontSize = 19.sp
                 ),
             )
 
@@ -157,11 +157,11 @@ fun AppSignUpScreen() {
                     onValueChange = {},
                     readOnly = true,
                     placeholder = {
-                        Text("Select Location", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
+                        Text("Select Location", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp)
                     },
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                    textStyle = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 19.sp
                     ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
@@ -208,11 +208,11 @@ fun AppSignUpScreen() {
                     onValueChange = {},
                     readOnly = true,
                     placeholder = {
-                        Text("Select Gender", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
+                        Text("Select Gender", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp)
                     },
-                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                    textStyle = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
-                        fontSize = 20.sp
+                        fontSize = 19.sp
                     ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
@@ -367,7 +367,7 @@ fun AppSignUpScreen() {
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             )
             {
-                Text(text = "Sign Up", color = Color.Gray, fontSize = 20.sp)
+                Text(text = "Sign Up", color = Color.Gray, style = MaterialTheme.typography.titleMedium,fontSize = 19.sp)
             }
         }
 
