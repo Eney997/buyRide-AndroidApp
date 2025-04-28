@@ -37,7 +37,8 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
             cardDigits TEXT,
             cvvCvc TEXT,
             expDate TEXT,
-            deliveryLocation TEXT
+            deliveryLocation TEXT,
+            orderTime TEXT
         )
     """.trimIndent()
 
@@ -62,9 +63,37 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
             put("cvvCvc", chargeClient.cvvCvc)
             put("expDate", chargeClient.expDate)
             put("deliveryLocation", chargeClient.deliveryLocation)
+            put("orderTime", chargeClient.orderTime)
         }
         db.insert("Charge", null, values)
         db.close()
+    }
+
+    //get all transactions under username
+    fun getOrdersForUser(username: String): List<ChargeTransaction> {
+        val orders = mutableListOf<ChargeTransaction>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM Charge WHERE username = ?", arrayOf(username))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val order = ChargeTransaction(
+                    username = cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                    holderName = cursor.getString(cursor.getColumnIndexOrThrow("cardHolderName")),
+                    holderLastName = cursor.getString(cursor.getColumnIndexOrThrow("cardHolderLastName")),
+                    cardDigits = cursor.getString(cursor.getColumnIndexOrThrow("cardDigits")),
+                    expDate = cursor.getString(cursor.getColumnIndexOrThrow("expDate")),
+                    cvvCvc = cursor.getString(cursor.getColumnIndexOrThrow("cvvCvc")),
+                    deliveryLocation = cursor.getString(cursor.getColumnIndexOrThrow("deliveryLocation")),
+                    orderTime = cursor.getLong(cursor.getColumnIndexOrThrow("orderTime"))
+                )
+                orders.add(order)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return orders
     }
 
     //signup screen insert
@@ -157,5 +186,6 @@ data class ChargeTransaction(
     val cardDigits: String,
     val expDate: String,
     val cvvCvc: String,
-    val deliveryLocation: String
+    val deliveryLocation: String,
+    val orderTime: Long
 )

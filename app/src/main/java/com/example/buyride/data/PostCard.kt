@@ -110,9 +110,7 @@ fun PostCard(bike: Bike,myNavController: NavController) {
                         )
                     }
                 )
-
             }
         }
     }
-
 }

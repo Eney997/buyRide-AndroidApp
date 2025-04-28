@@ -43,7 +43,6 @@ fun AppUserScreen() {
     val bottomNavItems = listOf(
         BottomNavItem("Home","HomeScreen", R.drawable.ic_home),
         BottomNavItem("Product","ProductScreen", R.drawable.ic_grocery),
-        BottomNavItem("Favourites","FavouritesScreen", R.drawable.ic_favorite),
         BottomNavItem("Settings","SettingsScreen", R.drawable.ic_settings)
     )
 
@@ -69,7 +68,6 @@ fun AppUserScreen() {
     }
 }
 
-
 //navigation in bottom bar
 @Composable
 fun Navigation(navHostController: NavHostController)
@@ -78,7 +76,6 @@ fun Navigation(navHostController: NavHostController)
     {
         composable("HomeScreen"){HomeScreen()}
         composable("ProductScreen"){ ProductScreen(navHostController) }
-        composable("FavouritesScreen"){ FavouritesScreen() }
         composable("SettingsScreen"){ SettingsScreen() }
         composable(
             route = "BuyMotoScreen/{bikeName}/{bikePrice}/{bikeType}/{bikeImage}/{bikeInfo}"
@@ -92,9 +89,7 @@ fun Navigation(navHostController: NavHostController)
 
             BuyMotoScreen(bikeName, bikePrice, bikeType, bikeImage,bikeInfo,navHostController)
         }
-
         composable ("ChargeScreen"){ ChargeScreen() }
-
     }
 
 }
@@ -108,7 +103,6 @@ fun BottomNavigationBar
     onItemClick:(BottomNavItem) -> Unit
 )
 {
-
     val backStackEntry by navController.currentBackStackEntryAsState()
     val context = LocalContext.current
     val bottomBarBkColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))

@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -54,6 +55,24 @@ fun SettingsScreen()
     val counterBoxColors = Color(ContextCompat.getColor(context, R.color.snackBarColor))
     val scrollIfNeeded = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
+    var totalOrderCount by remember { mutableIntStateOf(0) }
+    var activeOrderCount by remember { mutableIntStateOf(0) }
+
+    //take info from db to give notification user that his moto is already arrived
+    LaunchedEffect(Unit) {
+        username?.let {
+            user = db.getUserInfoToStoreInApp(it)
+
+            val orders = db.getOrdersForUser(it) // you need to create this function
+            val currentTime = System.currentTimeMillis()
+            val twoDaysInMillis = 2 * 24 * 60 * 60 * 1000L //2 days after ull get ur moto
+
+            totalOrderCount = orders.size
+            activeOrderCount = orders.count { order ->
+                currentTime - order.orderTime < twoDaysInMillis
+            }
+        }
+    }
 
 
     //show dialog box
@@ -73,6 +92,8 @@ fun SettingsScreen()
         .fillMaxSize()
         .background(Color.Black), contentAlignment = Alignment.TopStart)
     {
+
+
         Column(modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollIfNeeded)
@@ -112,7 +133,7 @@ fun SettingsScreen()
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 20.dp, end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Absolute.SpaceBetween)
+                horizontalArrangement = Arrangement.Center)
             {
                 Box(
                     modifier = Modifier
@@ -122,23 +143,12 @@ fun SettingsScreen()
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                        Text(text = totalOrderCount.toString(), color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                         Text("Total Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                     }
                 }
 
-                Box(
-                    modifier = Modifier
-                        .background(color = counterBoxColors, shape = RoundedCornerShape(12.dp))
-                        .padding(10.dp) // Padding inside the box
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
-                        Text("Active Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
-                    }
-                }
+                Spacer(modifier = Modifier.width(20.dp))
 
                 Box(
                     modifier = Modifier
@@ -148,8 +158,8 @@ fun SettingsScreen()
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text("0", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
-                        Text("Cancel Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                        Text(text = activeOrderCount.toString(), color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
+                        Text("Active Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                     }
                 }
 

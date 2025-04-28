@@ -333,7 +333,8 @@ fun ChargeScreen(){
                             cardDigits = takeCarDigits,
                             expDate = takeCardExpDate,
                             cvvCvc = takeCardCvvCvc,
-                            deliveryLocation = takeLocation
+                            deliveryLocation = takeLocation,
+                            orderTime= System.currentTimeMillis()
                         )
 
                         //insert data in database
