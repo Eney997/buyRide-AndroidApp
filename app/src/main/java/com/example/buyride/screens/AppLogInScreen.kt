@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -78,12 +79,13 @@ fun AppLogInScreen(
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Username", color = Color.Gray, fontSize = 20.sp) },
+                placeholder = { Text("Enter Username", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
                 maxLines = 1,
-                textStyle = TextStyle(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = Color.White,
                     fontSize = 20.sp
                 )
+
             )
 
             Spacer(modifier = Modifier.height(15.dp))
@@ -100,16 +102,16 @@ fun AppLogInScreen(
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Password", color = Color.Gray, fontSize = 20.sp) },
+                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
                 maxLines = 1,
-                textStyle = TextStyle(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = Color.White,
                     fontSize = 20.sp
                 ),
 
                 trailingIcon = {
                     TextButton(onClick = {isPasswordVisible = !isPasswordVisible}){
-                        Text(text = if(isPasswordVisible) "Hide?" else "Show?", color = Color.Gray, fontSize = 16.sp)
+                        Text(text = if(isPasswordVisible) "Hide?" else "Show?", color = Color.Gray, style = MaterialTheme.typography.titleMedium)
                     }
                 },
                 visualTransformation = if(isPasswordVisible) androidx.compose.ui.text.input.VisualTransformation.None else androidx.compose.ui.text.input.PasswordVisualTransformation()
@@ -163,7 +165,7 @@ fun AppLogInScreen(
                     ),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             ) {
-                Text(text = "LogIn", fontSize = 20.sp, color = Color.White)
+                Text(text = "Log In", style = MaterialTheme.typography.titleLarge, color = Color.Gray)
             }
 
             Spacer(modifier = Modifier.height(40.dp))

@@ -81,7 +81,7 @@ fun BuyMotoScreen(bikeName: String, bikePrice: String, bikeType: String, bikeIma
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .height(50.dp)
-                    .width(120.dp)
+                    .width(130.dp)
                     .border(1.dp, Color.LightGray, shape = RoundedCornerShape(10.dp)),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
                 onClick = {

@@ -20,6 +20,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -91,9 +92,9 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter UserName", color = Color.Gray, fontSize = 20.sp) },
+                placeholder = { Text("Enter UserName", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
                 maxLines = 1,
-                textStyle = TextStyle(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = Color.White,
                     fontSize = 20.sp
                 )
@@ -113,12 +114,12 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Password", color = Color.Gray, fontSize = 20.sp) },
+                placeholder = { Text("Enter Password", color = Color.Gray, style = MaterialTheme.typography.titleLarge) },
                 maxLines = 1,
-                textStyle = TextStyle(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = Color.White,
                     fontSize = 20.sp
-                )
+                ),
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -135,12 +136,12 @@ fun AppSignUpScreen() {
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.White,
                 ),
-                placeholder = { Text("Enter Gmail", color = Color.Gray, fontSize = 20.sp) },
+                placeholder = { Text("Enter Gmail", color = Color.Gray,  style = MaterialTheme.typography.titleLarge) },
                 maxLines = 1,
-                textStyle = TextStyle(
+                textStyle = MaterialTheme.typography.titleLarge.copy(
                     color = Color.White,
                     fontSize = 20.sp
-                )
+                ),
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -157,9 +158,12 @@ fun AppSignUpScreen() {
                     onValueChange = {},
                     readOnly = true,
                     placeholder = {
-                        Text("Select Location", color = Color.Gray, fontSize = 20.sp)
+                        Text("Select Location", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
                     },
-                    textStyle = TextStyle(color = Color.White, fontSize = 20.sp),
+                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                        color = Color.White,
+                        fontSize = 20.sp
+                    ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
@@ -205,9 +209,12 @@ fun AppSignUpScreen() {
                     onValueChange = {},
                     readOnly = true,
                     placeholder = {
-                        Text("Select Gender", color = Color.Gray, fontSize = 20.sp)
+                        Text("Select Gender", color = Color.Gray, style = MaterialTheme.typography.titleLarge)
                     },
-                    textStyle = TextStyle(color = Color.White, fontSize = 20.sp),
+                    textStyle = MaterialTheme.typography.titleLarge.copy(
+                        color = Color.White,
+                        fontSize = 20.sp
+                    ),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
@@ -361,7 +368,7 @@ fun AppSignUpScreen() {
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             )
             {
-                Text(text = "Sign Up", color = Color.White, fontSize = 20.sp)
+                Text(text = "Sign Up", color = Color.Gray, fontSize = 20.sp)
             }
         }
 

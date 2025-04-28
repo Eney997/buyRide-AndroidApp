@@ -100,8 +100,9 @@ fun HomeScreen() {
                     Text(
                         text = "YOUR JOURNEY STARTS HERE!",
                         color = Color.White,
+                        style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 27.sp
+                        fontSize = 30.sp
                     )
                 }
             }
@@ -119,7 +120,7 @@ fun HomeScreen() {
                     Box(
                         modifier = Modifier
                             .width(300.dp)
-                            .height(230.dp)
+                            .height(210.dp)
                             .background(color = boxCol, shape = RoundedCornerShape(10.dp))
                             .border(1.dp, Color.DarkGray, shape = RoundedCornerShape(10.dp)),
                         contentAlignment = Alignment.TopStart
@@ -133,14 +134,14 @@ fun HomeScreen() {
                             Spacer(modifier = Modifier.height(5.dp))
                             Text(
                                 text = obligation,
-                                fontSize = 23.sp,
+                                style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Medium,
                                 color = Color.White
                             )
                             Spacer(modifier = Modifier.height(5.dp))
                             Text(
                                 text = motoObligationDesc[motoObligationTitle.indexOf(obligation)],
-                                fontSize = 19.sp,
+                                style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Normal,
                                 color = Color.White
                             )
@@ -155,6 +156,7 @@ fun HomeScreen() {
                 Text(
                     "TOP SELLING BIKES",
                     color = Color.White,
+                    style = MaterialTheme.typography.bodyLarge,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Medium
                 )
