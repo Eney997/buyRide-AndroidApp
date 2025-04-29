@@ -58,10 +58,10 @@ fun PostCard(bike: Bike,myNavController: NavController) {
                 AsyncImage(
                     model = bike.imageUrl,
                     contentDescription = "${bike.name} Image",
-                    contentScale = ContentScale.FillWidth,
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(180.dp)
+                        .height(350.dp)
                         .clip(RoundedCornerShape(12.dp)),
                     imageLoader = imageLoader
                 )

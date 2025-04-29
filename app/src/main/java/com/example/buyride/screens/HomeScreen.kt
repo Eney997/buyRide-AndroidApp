@@ -74,7 +74,7 @@ fun HomeScreen() {
                 modifier = Modifier
                     .padding(start = 10.dp, end = 10.dp)
                     .fillMaxWidth()
-                    .height(220.dp)
+                    .height(300.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .background(color = boxCol),
                 contentAlignment = Alignment.Center
@@ -82,6 +82,7 @@ fun HomeScreen() {
                 Image(
                     painter = painterResource(id = R.drawable.homescreenbike),
                     contentDescription = "rider",
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -150,7 +151,7 @@ fun HomeScreen() {
                             Image(
                                 painter = painterResource(id = bike.imageRes),
                                 contentDescription = bike.name,
-                                contentScale = ContentScale.FillBounds,
+                                contentScale = ContentScale.Crop,
                                 modifier = Modifier.size(150.dp).clip(RoundedCornerShape(12.dp))
                             )
                             Spacer(modifier = Modifier.width(16.dp))

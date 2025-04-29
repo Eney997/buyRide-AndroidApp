@@ -340,7 +340,7 @@ fun ChargeScreen(){
                         db.insertTransaction(chargeTransaction)
 
                         scope.launch {
-                            mySnackBarHostState.showSnackbar("You got charged.Bicycle is on the way")
+                            mySnackBarHostState.showSnackbar("You got charged.You will get delivery notification on gmail account after 2 days.")
                         }
 
                         cardHName.value = ""

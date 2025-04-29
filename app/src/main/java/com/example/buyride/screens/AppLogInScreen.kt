@@ -58,7 +58,6 @@ fun AppLogInScreen(
 
     Box(modifier = Modifier.fillMaxSize().background(Color.Black))
     {
-        //todo internet checker need to add
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

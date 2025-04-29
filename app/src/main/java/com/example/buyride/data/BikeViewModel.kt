@@ -16,7 +16,7 @@ class BikeViewModel : ViewModel() {
         fetchBikes()
     }
 
-    private fun fetchBikes() {
+    internal fun fetchBikes() {
         viewModelScope.launch {
             try {
                 _bikes.value = RetrofitInstance.api.getAllBikes()
