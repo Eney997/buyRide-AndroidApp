@@ -324,6 +324,7 @@ fun ChargeScreen(){
                         return@Button
                     }
 
+                    //make stored prompts ready to save in database
                     if (takeUsername != null) {
                         val chargeTransaction = ChargeTransaction(
                             username = takeUsername,
@@ -343,6 +344,7 @@ fun ChargeScreen(){
                             mySnackBarHostState.showSnackbar("You got charged.You will get delivery notification on gmail account after 2 days.")
                         }
 
+                        //clear fields
                         cardHName.value = ""
                         cardHLastName.value = ""
                         digits.value = ""

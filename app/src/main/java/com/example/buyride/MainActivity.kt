@@ -24,55 +24,27 @@ class MainActivity : ComponentActivity() {
             val startDestination = if(isLoggedIn) "AppUserScreen" else "AppLogInScreen"
 
             NavHost(navController = myNavController, startDestination = startDestination){
-
                 //main screen here
-                composable("AppLogInScreen",
-                    exitTransition = {
-                        slideOutOfContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Left,
-                            tween(500)
-                        )
-                    },
-                    popEnterTransition = {
-                        slideIntoContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Right,
-                            tween(500)
-                        )
-                    },
-                ){AppLogInScreen(myNavController)}
-
+                composable( route = "AppLogInScreen",
+                    exitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(500))},
+                    popEnterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(500)) },)
+                {
+                    AppLogInScreen(myNavController)
+                }
                 //sign up screen here
-                composable("AppSignUpScreen",
-                    enterTransition = {
-                        slideIntoContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Left,
-                            tween(500)
-                        )
-                    },
-                    popExitTransition = {
-                        slideOutOfContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Right,
-                            tween(500)
-                        )
-                    }
-                    ){AppSignUpScreen()}
-
+                composable( route = "AppSignUpScreen",
+                    enterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(500))},
+                    popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(500)) })
+                {
+                    AppSignUpScreen()
+                }
                 //user screen here
-                composable("AppUserScreen",
-                    enterTransition = {
-                        slideIntoContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Left,
-                            tween(500)
-                        )
-                    },
-
-                    popExitTransition = {
-                        slideOutOfContainer(
-                            AnimatedContentTransitionScope.SlideDirection.Right,
-                            tween(500)
-                        )
-                    }
-                    ){ AppUserScreen() }
+                composable( route = "AppUserScreen",
+                    enterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(500)) },
+                    popExitTransition = { slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(500)) })
+                {
+                    AppUserScreen()
+                }
             }
 
         }

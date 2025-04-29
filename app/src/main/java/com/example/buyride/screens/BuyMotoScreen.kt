@@ -43,8 +43,8 @@ fun BuyMotoScreen(bikeName: String, bikePrice: String, bikeType: String, bikeIma
     ) {
         Column(modifier = Modifier
             .padding(top = 50.dp, start = 20.dp, end = 20.dp, bottom = 120.dp)
-            .verticalScroll(scroll)) {
-
+            .verticalScroll(scroll))
+        {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

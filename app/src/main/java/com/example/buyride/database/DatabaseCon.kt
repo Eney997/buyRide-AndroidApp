@@ -42,10 +42,12 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
         )
     """.trimIndent()
 
+        //execute sql
         db?.execSQL(createTable)
         db?.execSQL(createTransactionsTable)
     }
 
+    //drop tables if exists
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         db?.execSQL("DROP TABLE IF EXISTS Charge")
@@ -140,7 +142,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
     {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME WHERE username = ?", arrayOf(username))
-
         var user:UserClass? = null
 
         if(cursor.moveToFirst())
@@ -156,7 +157,6 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
 
         cursor.close()
         return user
-
     }
 
     //change password
@@ -172,6 +172,7 @@ class DatabaseCon(context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1)
     }
 }
 
+//user class for signup
 data class UserClass(
     val username: String,
     val password: String,
@@ -179,7 +180,7 @@ data class UserClass(
     val location: String,
     val gender: String
 )
-
+//data class for transaction
 data class ChargeTransaction(
     val username: String,
     val holderName: String,

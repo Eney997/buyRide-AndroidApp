@@ -117,7 +117,7 @@ fun BikeScreen(paddingValues: PaddingValues, myNavController: NavController) {
     }
 }
 
-
+//internet con check
 @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
 @SuppressLint("ServiceCast")
 fun isNetworkAvailable(context: Context): Boolean {

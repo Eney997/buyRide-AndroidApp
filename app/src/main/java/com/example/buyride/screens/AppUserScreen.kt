@@ -39,7 +39,6 @@ data class BottomNavItem(val name:String,val route:String,val icon:Int)
 fun AppUserScreen() {
 
     val navController = rememberNavController()
-
     val bottomNavItems = listOf(
         BottomNavItem("Home","HomeScreen", R.drawable.ic_home),
         BottomNavItem("Product","ProductScreen", R.drawable.ic_grocery),

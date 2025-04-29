@@ -56,9 +56,8 @@ fun HomeScreen() {
         "Make sure the bike is not under any active loan or has pending traffic fines.",
     )
 
+    //zip to store in lazy
     val motoObligations = motoObligationTitle.zip(motoObligationDesc)
-
-
 
     Box(modifier = Modifier
         .fillMaxSize()

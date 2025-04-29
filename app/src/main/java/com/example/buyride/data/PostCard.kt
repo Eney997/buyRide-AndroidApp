@@ -56,14 +56,14 @@ fun PostCard(bike: Bike,myNavController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 AsyncImage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp)
+                        .clip(RoundedCornerShape(12.dp)),
+                    imageLoader = imageLoader,
                     model = bike.imageUrl,
                     contentDescription = "${bike.name} Image",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(350.dp)
-                        .clip(RoundedCornerShape(12.dp)),
-                    imageLoader = imageLoader
                 )
 
                 Text(

@@ -246,7 +246,6 @@ fun AppSignUpScreen() {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-
             Button(
                 onClick = {
                     val getUsername = userName.value

@@ -74,13 +74,13 @@ fun SettingsScreen()
         }
     }
 
-
     //show dialog box
     if (showDialog && username != null)
     {
         PasswordAlertDialog (username = username,db=db,onDismiss = {showDialog = false})
     }
 
+    //userinfo read
     LaunchedEffect(Unit)
     {
         username?.let {
@@ -92,8 +92,6 @@ fun SettingsScreen()
         .fillMaxSize()
         .background(Color.Black), contentAlignment = Alignment.TopStart)
     {
-
-
         Column(modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollIfNeeded)
@@ -162,7 +160,6 @@ fun SettingsScreen()
                         Text("Active Orders", color = Color.White, fontSize = 17.sp,fontWeight = FontWeight.Medium)
                     }
                 }
-
             }
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -244,7 +241,8 @@ fun SettingsScreen()
                             i.flags =
                                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             context.startActivity(i)
-                        })
+                        }
+                    )
                 }
             }
         }

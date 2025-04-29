@@ -150,7 +150,6 @@ fun AppLogInScreen(
                         }
                         return@Button
                     }
-
                 },
                 modifier = Modifier
                     .width(150.dp)
@@ -210,6 +209,5 @@ fun AppLogInScreen(
                 )
             }
         )
-
     }
 }

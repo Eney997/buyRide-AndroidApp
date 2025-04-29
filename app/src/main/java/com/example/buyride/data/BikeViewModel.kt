@@ -16,6 +16,7 @@ class BikeViewModel : ViewModel() {
         fetchBikes()
     }
 
+    //fetch bikes from server
     internal fun fetchBikes() {
         viewModelScope.launch {
             try {
