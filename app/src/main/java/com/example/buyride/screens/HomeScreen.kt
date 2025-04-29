@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -55,15 +56,9 @@ fun HomeScreen() {
         "Make sure the bike is not under any active loan or has pending traffic fines.",
     )
 
-    val motoObligationIcons = listOf(
-        R.drawable.moto_o,
-        R.drawable.moto_t,
-        R.drawable.moto_th,
-        R.drawable.moto_f,
-        R.drawable.moto_fv,
-    )
+    val motoObligations = motoObligationTitle.zip(motoObligationDesc)
 
-    val obligationItems = motoObligationTitle.zip(motoObligationIcons)
+
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -84,27 +79,11 @@ fun HomeScreen() {
                     .background(color = boxCol),
                 contentAlignment = Alignment.Center
             ) {
-                Row(
-                    modifier = Modifier.padding(start = 20.dp, end = 20.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.rider),
-                        contentDescription = "rider",
-                        modifier = Modifier.size(170.dp)
-                    )
-
-                    Spacer(modifier = Modifier.width(20.dp))
-
-                    Text(
-                        text = "YOUR JOURNEY STARTS HERE!",
-                        color = Color.White,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp
-                    )
-                }
+                Image(
+                    painter = painterResource(id = R.drawable.homescreenbike),
+                    contentDescription = "rider",
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -116,31 +95,25 @@ fun HomeScreen() {
                     .padding(horizontal = 20.dp, vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                obligationItems.forEach { (obligation, iconResId) ->
+                motoObligations.forEach { (title, description) ->
                     Box(
                         modifier = Modifier
                             .width(300.dp)
-                            .height(210.dp)
+                            .height(150.dp)
                             .background(color = boxCol, shape = RoundedCornerShape(10.dp))
                             .border(1.dp, Color.DarkGray, shape = RoundedCornerShape(10.dp)),
                         contentAlignment = Alignment.TopStart
                     ) {
                         Column(modifier = Modifier.padding(10.dp)) {
-                            Image(
-                                painter = painterResource(id = iconResId),
-                                contentDescription = obligation,
-                                modifier = Modifier.size(50.dp)
-                            )
-                            Spacer(modifier = Modifier.height(5.dp))
                             Text(
-                                text = obligation,
+                                text = title,
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Medium,
                                 color = Color.White
                             )
                             Spacer(modifier = Modifier.height(5.dp))
                             Text(
-                                text = motoObligationDesc[motoObligationTitle.indexOf(obligation)],
+                                text = description,
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Normal,
                                 color = Color.White
@@ -177,7 +150,8 @@ fun HomeScreen() {
                             Image(
                                 painter = painterResource(id = bike.imageRes),
                                 contentDescription = bike.name,
-                                modifier = Modifier.size(80.dp)
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier.size(150.dp).clip(RoundedCornerShape(12.dp))
                             )
                             Spacer(modifier = Modifier.width(16.dp))
                             Column {

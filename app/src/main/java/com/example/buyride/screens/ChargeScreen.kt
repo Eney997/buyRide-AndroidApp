@@ -52,6 +52,20 @@ import kotlinx.coroutines.launch
 @Composable
 fun ChargeScreen(){
 
+    val scroll = rememberScrollState()
+    val context = LocalContext.current
+    val mySnackBarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
+    val cardHName = remember { mutableStateOf("") }
+    val cardHLastName = remember { mutableStateOf("") }
+    val digits = remember { mutableStateOf("") }
+    val cvv = remember { mutableStateOf("") }
+    val expData = remember { mutableStateOf("") }
+    val locations = listOf("New York", "Los Angeles", "Chicago", "Houston", "Miami")
+    var expanded by remember { mutableStateOf(false) }
+    val selectedLocation = remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,12 +73,6 @@ fun ChargeScreen(){
         contentAlignment = Alignment.Center
     )
     {
-        val scroll = rememberScrollState()
-        val context = LocalContext.current
-        val mySnackBarHostState = remember { SnackbarHostState() }
-        val scope = rememberCoroutineScope()
-        val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
-
         Column ( modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(scroll)
@@ -72,15 +80,6 @@ fun ChargeScreen(){
             horizontalAlignment = Alignment.CenterHorizontally
         )
         {
-            val cardHName = remember { mutableStateOf("") }
-            val cardHLastName = remember { mutableStateOf("") }
-            val digits = remember { mutableStateOf("") }
-            val cvv = remember { mutableStateOf("") }
-            val expData = remember { mutableStateOf("") }
-            val locations = listOf("New York", "Los Angeles", "Chicago", "Houston", "Miami")
-            var expanded by remember { mutableStateOf(false) }
-            val selectedLocation = remember { mutableStateOf("") }
-
             TextField(
                 value = cardHName.value,
                 onValueChange = { val filteredName = it.filter { char -> char.isLetter()}.uppercase()

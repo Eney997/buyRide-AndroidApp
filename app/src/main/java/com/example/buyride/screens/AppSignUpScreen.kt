@@ -49,6 +49,21 @@ import kotlinx.coroutines.launch
 @Composable
 fun AppSignUpScreen() {
 
+    val mySnackBarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
+    val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
+    val scope = rememberCoroutineScope()
+    val scroll = rememberScrollState()
+    val userName = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val gmail = remember { mutableStateOf("") }
+    val selectedLocation = remember { mutableStateOf("") }
+    val locations = listOf("New York", "Los Angeles", "Chicago", "Houston", "Miami")
+    var expanded by remember { mutableStateOf(false) }
+    var expandedGender by remember { mutableStateOf(false) }
+    val gender = listOf("Male","Female","Other")
+    val selectedGender = remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -56,12 +71,6 @@ fun AppSignUpScreen() {
         contentAlignment = Alignment.Center
     )
     {
-        val mySnackBarHostState = remember { SnackbarHostState() }
-        val context = LocalContext.current
-        val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
-        val scope = rememberCoroutineScope()
-        val scroll = rememberScrollState()
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,16 +78,6 @@ fun AppSignUpScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         )
         {
-            val userName = remember { mutableStateOf("") }
-            val password = remember { mutableStateOf("") }
-            val gmail = remember { mutableStateOf("") }
-            val selectedLocation = remember { mutableStateOf("") }
-            val locations = listOf("New York", "Los Angeles", "Chicago", "Houston", "Miami")
-            var expanded by remember { mutableStateOf(false) }
-            var expandedGender by remember { mutableStateOf(false) }
-            val gender = listOf("Male","Female","Other")
-            val selectedGender = remember { mutableStateOf("") }
-
             TextField(
                 value = userName.value,
                 onValueChange = { userName.value = it },

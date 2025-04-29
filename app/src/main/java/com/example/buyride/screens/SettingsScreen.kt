@@ -65,7 +65,7 @@ fun SettingsScreen()
 
             val orders = db.getOrdersForUser(it) // you need to create this function
             val currentTime = System.currentTimeMillis()
-            val twoDaysInMillis = 2 * 24 * 60 * 60 * 1000L //2 days after ull get ur moto
+            val twoDaysInMillis = 2 * 24 * 60 * 60 * 1000L
 
             totalOrderCount = orders.size
             activeOrderCount = orders.count { order ->

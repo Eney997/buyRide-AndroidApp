@@ -48,23 +48,22 @@ import androidx.core.content.edit
 fun AppLogInScreen(
     myNavController: NavController
 ) {
+    val mySnackBarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
+    val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
+    val scope = rememberCoroutineScope()
+    val userName = remember { mutableStateOf("") }
+    val userPassword = remember { mutableStateOf("") }
+    var isPasswordVisible by remember { mutableStateOf(false) }
+
     Box(modifier = Modifier.fillMaxSize().background(Color.Black))
     {
         //todo internet checker need to add
-
-        val mySnackBarHostState = remember { SnackbarHostState() }
-        val context = LocalContext.current
-        val snackBarColor = Color(ContextCompat.getColor(context, R.color.snackBarColor))
-        val scope = rememberCoroutineScope()
-
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            val userName = remember { mutableStateOf("") }
-            val userPassword = remember { mutableStateOf("") }
-            var isPasswordVisible by remember { mutableStateOf(false) }
 
             TextField(
                 value = userName.value,

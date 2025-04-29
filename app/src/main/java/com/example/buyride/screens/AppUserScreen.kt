@@ -43,7 +43,6 @@ fun AppUserScreen() {
     val bottomNavItems = listOf(
         BottomNavItem("Home","HomeScreen", R.drawable.ic_home),
         BottomNavItem("Product","ProductScreen", R.drawable.ic_grocery),
-        BottomNavItem("Notification","NotificationScreen", R.drawable.ic_notification),
         BottomNavItem("Settings","SettingsScreen", R.drawable.ic_settings)
     )
 
@@ -77,7 +76,6 @@ fun Navigation(navHostController: NavHostController)
     {
         composable("HomeScreen"){HomeScreen()}
         composable("ProductScreen"){ ProductScreen(navHostController) }
-        composable("NotificationScreen"){ NotificationScreen() }
         composable("SettingsScreen"){ SettingsScreen() }
         composable(
             route = "BuyMotoScreen/{bikeName}/{bikePrice}/{bikeType}/{bikeImage}/{bikeInfo}"
