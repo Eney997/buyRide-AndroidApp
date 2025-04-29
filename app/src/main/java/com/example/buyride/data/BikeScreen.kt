@@ -81,14 +81,14 @@ fun BikeScreen(paddingValues: PaddingValues, myNavController: NavController) {
                     Button(
                         onClick = { refreshConnection() },
                         modifier = Modifier
-                        .width(100.dp)
-                        .height(50.dp)
-                        .border(
-                            2.dp,
-                            Color.Gray,
-                            shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp)
-                        ),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+                            .width(100.dp)
+                            .height(50.dp)
+                            .border(
+                                2.dp,
+                                Color.Gray,
+                                shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp)
+                            ),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
                     ) {
                         Text("Retry", fontSize = 15.sp,color = Color.Gray)
                     }
