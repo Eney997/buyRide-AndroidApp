@@ -13,29 +13,30 @@ data class TopSellingMotorcycle
     companion object {
         val topSellingBikes = listOf(
             TopSellingMotorcycle(
-                name = "Street Bob",
-                type = "Chopper",
-                description = "Long forks and relaxed riding for cool cruising.",
-                imageRes = R.drawable.harlylogo
+                name = "Name:Harley Davidson",
+                type = "Type:Chopper",
+                description = "Iconic American cruiser known for its comfort and long-distance capability.",
+                imageRes = R.drawable.harly
             ),
             TopSellingMotorcycle(
-                name = "MegaGas 700cc",
-                type = "SuperMoto",
-                description = "Lightweight urban beast with great handling.",
-                imageRes = R.drawable.supermotologo
+                name = "Name:KTM 690 SMC R",
+                type = "Type:SuperMoto",
+                description = "High-performance SuperMoto built for urban agility and off-road fun.",
+                imageRes = R.drawable.supermoto
             ),
             TopSellingMotorcycle(
-                name = "MT07",
-                type = "Street",
-                description = "Powerful and sleek for everyday road riding.",
-                imageRes = R.drawable.streetlogo
+                name = "Name:Triumph Street",
+                type = "Type:Street",
+                description = "Aggressive naked bike offering sharp handling and thrilling performance.",
+                imageRes = R.drawable.triump
             ),
             TopSellingMotorcycle(
-                name = "Nova Racer X",
-                type = "NeoCafeRacer",
-                description = "Retro style with modern performance.",
-                imageRes = R.drawable.neologo
+                name = "Name:MV AB 1000 RR",
+                type = "Type:Naked",
+                description = "Italian-engineered hyper naked motorcycle blending extreme power with sharp design.",
+                imageRes = R.drawable.brutale
             )
+
         )
     }
 }

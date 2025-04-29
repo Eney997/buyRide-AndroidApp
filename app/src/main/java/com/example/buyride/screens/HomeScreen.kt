@@ -155,7 +155,7 @@ fun HomeScreen() {
                             )
                             Spacer(modifier = Modifier.width(16.dp))
                             Column {
-                                Text(text = bike.name, color = Color.White, fontSize = 23.sp)
+                                Text(text = bike.name, color = Color.White, style = MaterialTheme.typography.bodyLarge)
                                 Text(text = bike.type, color = Color.White, style = MaterialTheme.typography.bodyLarge)
                                 Text(text = bike.description, color = Color.White,style = MaterialTheme.typography.bodyLarge)
                             }
