@@ -58,4 +58,3 @@ This project helped me gain hands-on experience with:
 - Integrating with a **custom backend** using Retrofit
 - Designing **real-world features** like cart, checkout, and order tracking
 - Managing local and session data efficiently
----
